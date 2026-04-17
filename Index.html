@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daniel Listi — Global Partnerships Leader</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f2ed;
+  --bg-warm: #ede9e2;
+  --ink: #0f0e0c;
+  --ink-mid: #4a4740;
+  --ink-light: #9a958e;
+  --accent: #c8402a;
+  --accent-light: rgba(200,64,42,0.1);
+  --white: #ffffff;
+  --border: rgba(15,14,12,0.1);
+  --border-strong: rgba(15,14,12,0.2);
+}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--ink); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+
+/* NAV */
+nav { position: fixed; top: 0; width: 100%; z-index: 200; padding: 1.5rem 3rem; display: flex; justify-content: space-between; align-items: center; transition: all 0.4s ease; }
+nav.scrolled { background: rgba(245,242,237,0.93); backdrop-filter: blur(16px); padding: 1rem 3rem; border-bottom: 1px solid var(--border); }
+.nav-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+.nav-name em { color: var(--accent); font-style: italic; }
+.nav-links { display: flex; gap: 2.5rem; align-items: center; }
+.nav-links a { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-mid); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--accent); }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; }
+.nav-toggle span { display: block; width: 22px; height: 1.5px; background: var(--ink); transition: all 0.3s; }
+
+/* HERO */
+.hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; padding-top: 6rem; position: relative; overflow: hidden; }
+.hero-left { padding: 6rem 3rem; display: flex; flex-direction: column; justify-content: center; position: relative; z-index: 2; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 0.6rem; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.75rem; opacity: 0; animation: fadeUp 0.7s ease 0.1s forwards; }
+.eyebrow-line { width: 28px; height: 1px; background: var(--accent); }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 4.5vw, 4.6rem); font-weight: 900; line-height: 1.05; letter-spacing: -0.02em; margin-bottom: 1.75rem; opacity: 0; animation: fadeUp 0.7s ease 0.25s forwards; }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero-bio { font-size: 0.92rem; font-weight: 300; color: var(--ink-mid); line-height: 1.9; max-width: 480px; margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.7s ease 0.4s forwards; }
+.hero-actions { display: flex; gap: 1rem; align-items: center; opacity: 0; animation: fadeUp 0.7s ease 0.55s forwards; }
+.btn-primary { display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.75rem; background: var(--accent); color: var(--white); font-family: 'DM Sans', sans-serif; font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; border-radius: 100px; transition: all 0.25s ease; }
+.btn-primary:hover { background: var(--ink); transform: translateY(-2px); }
+.btn-secondary { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-mid); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
+.btn-secondary:hover { color: var(--accent); }
+.hero-stats { display: flex; gap: 2.5rem; margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid var(--border); opacity: 0; animation: fadeUp 0.7s ease 0.7s forwards; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 900; color: var(--ink); line-height: 1; margin-bottom: 0.2rem; }
+.stat-num span { color: var(--accent); }
+.stat-label { font-size: 0.7rem; font-weight: 400; color: var(--ink-light); letter-spacing: 0.05em; text-transform: uppercase; }
+.hero-right { position: relative; background: var(--bg-warm); overflow: hidden; opacity: 0; animation: fadeIn 1s ease 0.3s forwards; }
+.hero-right::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(200,64,42,0.06) 0%, transparent 60%); }
+.hero-photo-area { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.photo-placeholder-hero { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1rem; color: var(--ink-light); }
+.photo-circle { width: 80px; height: 80px; border-radius: 50%; border: 2px dashed var(--border-strong); display: flex; align-items: center; justify-content: center; }
+.photo-placeholder-hero p { font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.hero-tag { position: absolute; bottom: 2.5rem; left: 2rem; background: var(--white); border-radius: 12px; padding: 1rem 1.25rem; display: flex; align-items: center; gap: 0.75rem; box-shadow: 0 4px 24px rgba(15,14,12,0.1); opacity: 0; animation: fadeUp 0.6s ease 1s forwards; }
+.hero-tag-dot { width: 8px; height: 8px; border-radius: 50%; background: #22c55e; flex-shrink: 0; animation: pulse 2s ease infinite; }
+.hero-tag-text { font-size: 0.78rem; font-weight: 500; color: var(--ink); }
+.hero-tag-sub { font-size: 0.7rem; color: var(--ink-light); }
+.hero-big-initial { position: absolute; top: -2rem; right: -1rem; font-family: 'Playfair Display', serif; font-size: 22rem; font-weight: 900; color: rgba(15,14,12,0.04); line-height: 1; pointer-events: none; user-select: none; }
+
+/* SHARED */
+section { padding: 6rem 3rem; }
+.section-eyebrow { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.6rem; }
+.section-eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: var(--accent); }
+.section-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 900; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 0.5rem; }
+.section-title em { font-style: italic; color: var(--accent); }
+
+/* ABOUT */
+#about { background: var(--ink); color: var(--white); position: relative; overflow: hidden; }
+#about::before { content: '"'; position: absolute; top: -2rem; left: 1.5rem; font-family: 'Playfair Display', serif; font-size: 20rem; color: rgba(255,255,255,0.03); line-height: 1; pointer-events: none; }
+.about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 6rem; align-items: start; max-width: 1100px; }
+#about .section-eyebrow { color: var(--accent); }
+#about .section-title { color: var(--white); }
+.about-body { font-size: 1rem; font-weight: 300; color: rgba(255,255,255,0.65); line-height: 1.9; }
+.about-body p + p { margin-top: 1.25rem; }
+.about-body strong { color: var(--white); font-weight: 500; }
+.about-skills { margin-top: 2.5rem; }
+.skills-label { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 1rem; }
+.skills-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chip { font-size: 0.75rem; font-weight: 400; padding: 0.4rem 0.9rem; border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.6); border-radius: 100px; transition: all 0.2s; }
+.chip:hover { border-color: var(--accent); color: var(--white); }
+.about-right-col { padding-top: 0.5rem; }
+.values-list { display: flex; flex-direction: column; gap: 1.25rem; }
+.value-item { padding: 1.5rem; border: 1px solid rgba(255,255,255,0.07); border-radius: 12px; transition: border-color 0.3s; }
+.value-item:hover { border-color: rgba(200,64,42,0.4); }
+.value-num { font-family: 'Playfair Display', serif; font-size: 0.75rem; font-style: italic; color: var(--accent); margin-bottom: 0.4rem; }
+.value-title { font-size: 0.9rem; font-weight: 500; color: var(--white); margin-bottom: 0.35rem; }
+.value-desc { font-size: 0.82rem; font-weight: 300; color: rgba(255,255,255,0.45); line-height: 1.65; }
+
+/* PHOTO STRIPS */
+.photo-strip { padding: 3rem; background: var(--bg-warm); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.photo-strip-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; max-width: 1100px; }
+.photo-slot { aspect-ratio: 4/3; background: var(--bg); border: 1.5px dashed var(--border-strong); border-radius: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.65rem; color: var(--ink-light); transition: border-color 0.2s; }
+.photo-slot:hover { border-color: var(--accent); }
+.photo-slot svg { opacity: 0.3; }
+.photo-slot-label { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; }
+.photo-slot-sub { font-size: 0.65rem; color: var(--ink-light); opacity: 0.6; }
+
+/* EXPERIENCE */
+#experience { background: var(--bg); }
+.exp-layout { max-width: 860px; }
+.exp-intro { font-size: 1rem; font-weight: 300; color: var(--ink-mid); line-height: 1.8; max-width: 520px; margin-bottom: 3rem; }
+.exp-list { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--border); }
+.exp-item { border-bottom: 1px solid var(--border); }
+.exp-trigger { width: 100%; background: none; border: none; cursor: pointer; padding: 1.75rem 0; display: grid; grid-template-columns: 3rem 2.75rem 1fr auto; align-items: center; gap: 1.25rem; text-align: left; }
+.exp-trigger:hover .exp-company { color: var(--accent); }
+.exp-index { font-family: 'Playfair Display', serif; font-size: 0.8rem; font-style: italic; color: var(--ink-light); }
+.exp-logo-wrap { width: 40px; height: 40px; border-radius: 8px; border: 1px solid var(--border); background: var(--white); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; }
+.exp-logo-wrap img { width: 28px; height: 28px; object-fit: contain; display: block; }
+.exp-logo-wrap .logo-fallback { font-family: 'Playfair Display', serif; font-size: 0.85rem; font-weight: 700; color: var(--ink-mid); }
+.exp-company { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--ink); letter-spacing: -0.01em; transition: color 0.2s; margin-bottom: 0.2rem; }
+.exp-meta { display: flex; align-items: center; gap: 1rem; font-size: 0.78rem; color: var(--ink-light); }
+.exp-period::before { content: '·'; margin-right: 0.35rem; }
+.exp-right { display: flex; align-items: center; gap: 1rem; }
+.exp-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; justify-content: flex-end; }
+.exp-tag-pill { font-size: 0.68rem; font-weight: 500; padding: 0.25rem 0.65rem; background: var(--accent-light); color: var(--accent); border-radius: 100px; }
+.exp-arrow { width: 28px; height: 28px; border: 1px solid var(--border-strong); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.3s ease; color: var(--ink-mid); }
+.exp-item.open .exp-arrow { background: var(--accent); border-color: var(--accent); color: var(--white); transform: rotate(45deg); }
+.exp-body { display: none; padding: 0 0 2.5rem 7.25rem; }
+.exp-item.open .exp-body { display: block; }
+.exp-scope { font-size: 0.92rem; font-weight: 300; color: var(--ink-mid); line-height: 1.8; max-width: 580px; margin-bottom: 1.75rem; padding-bottom: 1.75rem; border-bottom: 1px dashed var(--border); }
+.exp-highlights-title { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.85rem; }
+.exp-highlights { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.75rem; }
+.exp-highlight { display: flex; align-items: baseline; gap: 0.75rem; font-size: 0.88rem; color: var(--ink-mid); line-height: 1.6; }
+.exp-highlight::before { content: '→'; color: var(--accent); font-size: 0.75rem; flex-shrink: 0; }
+.exp-highlight strong { color: var(--ink); font-weight: 500; }
+.case-studies { margin-top: 1.75rem; }
+.case-studies-title { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.85rem; }
+.case-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 0.75rem; }
+.case-card { background: var(--bg-warm); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.2rem; text-decoration: none; display: block; transition: all 0.25s ease; }
+.case-card:hover { border-color: var(--accent); background: var(--white); transform: translateY(-2px); }
+.case-card-type { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.4rem; }
+.case-card-title { font-family: 'Playfair Display', serif; font-size: 0.92rem; font-weight: 700; color: var(--ink); line-height: 1.35; margin-bottom: 0.35rem; }
+.case-card-desc { font-size: 0.75rem; color: var(--ink-light); line-height: 1.55; }
+.case-card-arrow { margin-top: 0.75rem; font-size: 0.7rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+
+/* BEYOND THE OFFICE */
+#beyond { background: var(--bg-warm); border-top: 1px solid var(--border); }
+.beyond-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: start; max-width: 1100px; }
+.beyond-blurb { font-size: 1rem; font-weight: 300; color: var(--ink-mid); line-height: 1.85; margin-top: 1.5rem; }
+.beyond-blurb p + p { margin-top: 1rem; }
+.beyond-articles-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-light); margin-top: 2.5rem; margin-bottom: 1rem; }
+.article-list { display: flex; flex-direction: column; gap: 0.75rem; }
+.article-item { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.1rem; background: var(--white); border: 1px solid var(--border); border-radius: 10px; text-decoration: none; transition: all 0.25s; }
+.article-item:hover { border-color: var(--accent); transform: translateX(4px); }
+.article-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--accent-light); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--accent); }
+.article-source { font-size: 0.65rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.2rem; }
+.article-title { font-size: 0.85rem; font-weight: 500; color: var(--ink); line-height: 1.35; }
+.beyond-photos-label { font-size: 0.68rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 1rem; }
+.beyond-photos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.85rem; }
+.beyond-photo-slot { aspect-ratio: 3/4; background: var(--bg); border: 1.5px dashed var(--border-strong); border-radius: 10px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0.5rem; color: var(--ink-light); transition: border-color 0.2s; }
+.beyond-photo-slot:hover { border-color: var(--accent); }
+.beyond-photo-slot svg { opacity: 0.3; }
+.beyond-photo-slot span { font-size: 0.65rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* CONTACT */
+#contact { background: var(--ink); color: var(--white); text-align: center; padding: 7rem 3rem; }
+.contact-inner { max-width: 480px; margin: 0 auto; }
+#contact .section-eyebrow { justify-content: center; color: var(--accent); }
+#contact .section-eyebrow::before { display: none; }
+.contact-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 900; color: var(--white); letter-spacing: -0.02em; margin-bottom: 2rem; }
+.contact-title em { font-style: italic; color: var(--accent); }
+.contact-cta { display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 2.5rem; background: var(--accent); color: var(--white); font-size: 0.85rem; font-weight: 500; letter-spacing: 0.06em; text-decoration: none; border-radius: 100px; transition: all 0.25s; }
+.contact-cta:hover { background: var(--white); color: var(--ink); transform: translateY(-2px); }
+.contact-links { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; }
+.contact-link { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+.contact-link:hover { color: var(--white); }
+
+/* FOOTER */
+footer { padding: 1.75rem 3rem; background: var(--ink); border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; color: rgba(255,255,255,0.25); font-size: 0.72rem; }
+footer span em { font-family: 'Playfair Display', serif; font-style: italic; color: rgba(255,255,255,0.4); }
+
+/* ANIMATIONS */
+@keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes pulse { 0%,100% { opacity:1; transform:scale(1); } 50% { opacity:0.6; transform:scale(1.3); } }
+.reveal { opacity:0; transform:translateY(24px); transition: opacity 0.65s ease, transform 0.65s ease; }
+.reveal.visible { opacity:1; transform:translateY(0); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  nav { padding: 1.25rem 1.5rem; }
+  nav.scrolled { padding: 0.9rem 1.5rem; }
+  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+  .nav-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(245,242,237,0.97); backdrop-filter: blur(16px); padding: 1.5rem; gap: 1.25rem; border-bottom: 1px solid var(--border); }
+  .hero { grid-template-columns: 1fr; }
+  .hero-left { padding: 7rem 1.5rem 3rem; }
+  .hero-right { display: none; }
+  section { padding: 4.5rem 1.5rem; }
+  .about-grid, .beyond-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .photo-strip { padding: 2.5rem 1.5rem; }
+  .exp-trigger { grid-template-columns: 2.5rem 2.75rem 1fr; }
+  .exp-right { display: none; }
+  .exp-body { padding-left: 1rem; }
+  .hero-stats { gap: 1.75rem; }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <a href="#" class="nav-name">Daniel <em>Listi</em></a>
+  <div class="nav-links" id="navLinks">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#beyond">Beyond the Office</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-line"></span>
+      Global Partnerships Leader · Toronto
+    </div>
+    <h1>Canadian Made.<br><em>Globally<br>Refined.</em></h1>
+    <p class="hero-bio">Ten years. Four global brands. Fifteen markets worked on. I've led partnership and sponsorship strategy at every scale — from a gaming start-up's first commercial deal to multi-million dollar partnerships for some of the most recognized CPG and tech brands in the world.<br><br>My career hasn't been linear. The lows of layoffs, the highs of an international relocation, and pivots between industries. Every chapter added new learnings and range — across B2C and B2B, across sport, tech, entertainment and culture, across boardrooms and international borders.<br><br>Below is the work. The deals built, the campaigns launched, and the people developed along the way.</p>
+    <div class="hero-actions">
+      <a href="#experience" class="btn-primary">
+        See My Work
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#contact" class="btn-secondary">Get in Touch →</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">10<span>+</span></div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div>
+        <div class="stat-num">4</div>
+        <div class="stat-label">Global Brands</div>
+      </div>
+      <div>
+        <div class="stat-num">15<span>+</span></div>
+        <div class="stat-label">Markets Worked</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-big-initial">D</div>
+    <div class="hero-photo-area">
+      <img src="headshot.jpg" alt="Daniel Listi" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+    </div>
+    <div class="hero-tag">
+      <div class="hero-tag-dot"></div>
+      <div>
+        <div class="hero-tag-text">Open to new opportunities</div>
+        <div class="hero-tag-sub">Sport · Entertainment · Culture</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-eyebrow reveal">About</div>
+      <h2 class="section-title reveal">The person<br>behind the <em>work.</em></h2>
+      <div style="width:36px;height:2px;background:var(--accent);margin:1.25rem 0 1.75rem;" class="reveal"></div>
+      <div class="about-body reveal">
+        <p>I'm a senior marketing leader who's spent a decade turning partnerships into commercial engines — deals that move product, build brand, and show up in culture in ways that actually matter.</p>
+        <p>In Canada, I've been in the room for some of the country's biggest brand moments: the <strong>PS5 launch</strong>, <strong>Toronto International Film Festival</strong>, and full seasons alongside <strong>MLSE and the Blue Jays</strong>.</p>
+        <p>Globally, I've led partner strategy for <strong>McDonald's and KFC</strong> across Just Eat Takeaway's network, built media partnerships spanning <strong>30+ markets</strong> at Kraft Heinz, and co-launched a gaming ghost kitchen with <strong>FaZe Clan</strong> across the US.</p>
+        <p>I lead with curiosity, build with intention, and measure everything that matters.</p>
+      </div>
+      <div class="about-skills reveal">
+        <div class="skills-label">Core expertise</div>
+        <div class="skills-chips">
+          <span class="chip">Partnership Strategy</span>
+          <span class="chip">Sponsorship Activations</span>
+          <span class="chip">Brand Storytelling</span>
+          <span class="chip">Integrated Campaigns</span>
+          <span class="chip">Insights Led Strategy</span>
+          <span class="chip">Commercial Impact</span>
+          <span class="chip">Contract Negotiations</span>
+          <span class="chip">B2B Growth</span>
+          <span class="chip">Retail Media</span>
+          <span class="chip">Go-To-Market</span>
+        </div>
+      </div>
+    </div>
+    <div class="about-right-col reveal">
+      <div class="values-list">
+        <div class="value-item">
+          <div class="value-num">01 —</div>
+          <div class="value-title">Lead With Innovation</div>
+          <div class="value-desc">The best marketing leaders don't wait for permission to try something new. I've built campaigns on platforms before they peaked, championed AI tools before they were mainstream, and pushed for approaches that made rooms uncomfortable — then delivered results that made them believers.</div>
+        </div>
+        <div class="value-item">
+          <div class="value-num">02 —</div>
+          <div class="value-title">Insights First. Always.</div>
+          <div class="value-desc">We have more data at our fingertips than at any point in history. I've never been interested in gut-feel marketing. Every partnership I've built, every campaign I've launched, starts with a question: what does the consumer actually want? The insights lead. Everything else follows.</div>
+        </div>
+        <div class="value-item">
+          <div class="value-num">03 —</div>
+          <div class="value-title">Make Room at the Table</div>
+          <div class="value-desc">The proudest moment of my career wasn't a campaign launch. It was the first time I promoted someone. I inherited them as a flight risk, coached them for 12 months, and watched them earn the promotion they'd been working toward. I measure my leadership as much by the people I've developed as the deals I've closed.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO STRIP 1: Between About and Experience -->
+<div class="photo-strip">
+  <div class="photo-strip-grid" style="grid-template-columns: repeat(5, 1fr);">
+    <div class="photo-slot reveal" style="border:none;background:none;border-radius:8px;overflow:hidden;">
+      <img src="images/strip1_kh_pinterest.jpg" alt="Kraft Heinz x Pinterest" style="width:100%;height:220px;object-fit:cover;object-position:center;display:block;border-radius:8px;">
+    </div>
+    <div class="photo-slot reveal" style="border:none;background:none;border-radius:8px;overflow:hidden;">
+      <img src="images/strip1_jet_ucl.jpg" alt="Just Eat x UEFA Champions League" style="width:100%;height:220px;object-fit:cover;object-position:center;display:block;border-radius:8px;">
+    </div>
+    <div class="photo-slot reveal" style="border:none;background:none;border-radius:8px;overflow:hidden;">
+      <img src="images/strip1_ps_wfh.jpg" alt="PlayStation" style="width:100%;height:220px;object-fit:cover;object-position:center top;display:block;border-radius:8px;">
+    </div>
+    <div class="photo-slot reveal" style="border:none;background:none;border-radius:8px;overflow:hidden;">
+      <img src="images/strip1_dd_bluejays.jpg" alt="DoorDash x Blue Jays" style="width:100%;height:220px;object-fit:cover;object-position:center;display:block;border-radius:8px;">
+    </div>
+    <div class="photo-slot reveal" style="border:none;background:none;border-radius:8px;overflow:hidden;">
+      <img src="images/strip1_nba_trophy.jpg" alt="NBA Larry O'Brien Trophy" style="width:100%;height:220px;object-fit:cover;object-position:center top;display:block;border-radius:8px;">
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="exp-layout">
+    <div class="section-eyebrow reveal">Career</div>
+    <h2 class="section-title reveal">Where I've <em>done the work.</em></h2>
+    <p class="exp-intro reveal">Partnerships that drive commercial results — each one a different scale, a different challenge, a different consumer and a different playbook for winning partnerships.</p>
+    <div class="exp-list reveal">
+
+      <!-- Kraft Heinz -->
+      <div class="exp-item" id="job-kh">
+        <button class="exp-trigger" onclick="toggleExp('job-kh')">
+          <div class="exp-index">01</div>
+          <div class="exp-logo-wrap">
+            <img src="images/kraftheinz.png" alt="Kraft Heinz" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="logo-fallback" style="display:none">KH</span>
+          </div>
+          <div class="exp-header-info">
+            <div class="exp-company">Kraft Heinz</div>
+            <div class="exp-meta"><span class="exp-role-tag">Global Media Partnerships Lead · Amsterdam, NL</span></div>
+          </div>
+          <div class="exp-right">
+            <div class="exp-tags"><span class="exp-tag-pill">Global</span><span class="exp-tag-pill">Media</span><span class="exp-tag-pill">Sponsorship</span></div>
+            <div class="exp-arrow"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+        </button>
+        <div class="exp-body">
+          <p class="exp-scope">Led global media partnership strategy across 30+ markets, reporting into the Senior Director of Global Media Excellence. Owned executive-level JBP negotiations with Google, TikTok, Pinterest, Spotify, and Uber — translating platform relationships into commercial frameworks adopted globally. Directed a $15M+ sport and entertainment sponsorship portfolio spanning properties including Inter Milan, NFL Germany, and Tomorrowland.</p>
+          <div class="case-studies">
+            <div class="case-studies-title">Case studies & work samples</div>
+            <div class="case-cards">
+              <a href="#" class="case-card" style="cursor:default;" onclick="return false;">
+                <div class="case-card-type">Partnership</div>
+                <div class="case-card-title">Global Google JBP</div>
+                <div class="case-card-desc">Built a first-of-its-kind global JBP with Google to drive strategic value across 30+ markets and bring new capabilities to underserved markets.</div>
+              </a>
+              <a href="https://news.kraftheinzcompany.com/press-releases-details/2025/Look-Familiar-HEINZ-Reveals-the-Striking-Similarity-that-Fry-Boxes-Look-Like-the-Iconic-HEINZ-Keystone-in-New-Global-Creative-Campaign/default.aspx" target="_blank" class="case-card">
+                <div class="case-card-type">Campaign</div>
+                <div class="case-card-title">Heinz — Looks Familiar</div>
+                <div class="case-card-desc">Built a unique retail partnership with Uber Eats across 4 markets, attaching Heinz Ketchup bottle purchases to consumers buying meals with french fries.</div>
+                <div class="case-card-arrow">Read more →</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Just Eat Takeaway -->
+      <div class="exp-item" id="job-jet">
+        <button class="exp-trigger" onclick="toggleExp('job-jet')">
+          <div class="exp-index">02</div>
+          <div class="exp-logo-wrap">
+            <img src="images/justeattakeaway.png" alt="Just Eat Takeaway" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="logo-fallback" style="display:none">JET</span>
+          </div>
+          <div class="exp-header-info">
+            <div class="exp-company">Just Eat Takeaway</div>
+            <div class="exp-meta"><span class="exp-role-tag">Global Partner Marketing Lead · Amsterdam, NL</span></div>
+          </div>
+          <div class="exp-right">
+            <div class="exp-tags"><span class="exp-tag-pill">Partnerships</span><span class="exp-tag-pill">Global</span></div>
+            <div class="exp-arrow"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+        </button>
+        <div class="exp-body">
+          <p class="exp-scope">Relocated to Amsterdam on a 12-month assignment to lead B2B and B2B2C commercial growth strategy for McDonald's and YUM Brands across 14 markets. Operated as an internal marketing consultant — diagnosing market-level performance gaps, building marketing solutions, scaling proven strategies globally and selling through new tech/retail media opportunities. Developed the UEFA Partner Playbook to translate sponsorship assets into a commercial framework driving co-branded activation and partner revenue across markets.</p>
+          <div class="case-studies">
+            <div class="case-studies-title">Case studies & work samples</div>
+            <div class="case-cards">
+              <a href="#" class="case-card" style="cursor:default;" onclick="return false;">
+                <div class="case-card-type">Partnership</div>
+                <div class="case-card-title">Growth in Spain</div>
+                <div class="case-card-desc">Recognized a performance gap in AOV with KFC in Spain. Worked cross-functionally with insights to find a solution, sold through a business case to Product & Eng, and increased AOV by 4.5% within 6 weeks.</div>
+              </a>
+              <a href="#" class="case-card" style="cursor:default;" onclick="return false;">
+                <div class="case-card-type">Framework Building</div>
+                <div class="case-card-title">McDonald's 2025 Strategy</div>
+                <div class="case-card-desc">Worked internally to gather insights and develop new solutions to improve McDonald's overall performance across all markets in 2025. The new direction secured and increased investment.</div>
+              </a>
+              <a href="#" class="case-card" style="cursor:default;" onclick="return false;">
+                <div class="case-card-type">New Tech</div>
+                <div class="case-card-title">KFC Retail Media</div>
+                <div class="case-card-desc">Sold through a first-of-its-kind retail media strategy to KFC Europe. Focused on a priority market in Germany, delivering new partner investment and impactful results.</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DoorDash -->
+      <div class="exp-item" id="job-doordash">
+        <button class="exp-trigger" onclick="toggleExp('job-doordash')">
+          <div class="exp-index">03</div>
+          <div class="exp-logo-wrap">
+            <img src="images/doordash.png" alt="DoorDash" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="logo-fallback" style="display:none">DD</span>
+          </div>
+          <div class="exp-header-info">
+            <div class="exp-company">DoorDash</div>
+            <div class="exp-meta"><span class="exp-role-tag">Marketing Manager, Cultural Partnerships · Toronto, ON</span></div>
+          </div>
+          <div class="exp-right">
+            <div class="exp-tags"><span class="exp-tag-pill">Sport</span><span class="exp-tag-pill">Entertainment</span></div>
+            <div class="exp-arrow"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+        </button>
+        <div class="exp-body">
+          <p class="exp-scope">Directed sport, entertainment and gaming partnership strategy across Canada, managing $2M+ in sponsorship assets and leading integrated campaigns across broadcast media, live events, and digital channels. Negotiated athlete and talent deals and owned end-to-end campaign strategy and execution — from brief through to performance measurement — with a singular focus on consumer growth and acquisition.</p>
+          <div class="case-studies">
+            <div class="case-studies-title">Case studies & work samples</div>
+            <div class="case-cards">
+              <a href="#" class="case-card" style="cursor:default;" onclick="return false;">
+                <div class="case-card-type">Sport</div>
+                <div class="case-card-title">DoorDash Sports</div>
+                <div class="case-card-desc">Built and independently led the full-funnel strategy for Toronto Blue Jays & NBA Canada sponsorships — from brief and negotiation through to execution across broadcast, athletes, digital and live TV. Drove 178K incremental orders, 5K new customers, and grew sponsorship awareness to 36% (+9% above benchmark) in under 12 months.</div>
+                <img src="images/dd_image_1.png" alt="DoorDash Blue Jays" style="width:100%;border-radius:6px;margin-top:0.75rem;">
+              </a>
+              <a href="https://www.youtube.com/watch?v=C5yuPYi9Neg&list=PLD4Gs8sfRvtEcze8FMQgZ4D9jQTtIOQTE" target="_blank" class="case-card">
+                <div class="case-card-type">Gaming</div>
+                <div class="case-card-title">DoorDash Gaming</div>
+                <div class="case-card-desc">Led DoorDash's Canadian gaming strategy, launching custom content partnerships with FaZe Clan that drove CTR +21% above benchmark and 80% brand recall amongst FaZe fans within 6 months.</div>
+                <img src="images/dd_faze_gaming.png" alt="DoorDash x FaZe Clan" style="width:100%;border-radius:6px;margin-top:0.75rem;">
+                <div class="case-card-arrow">Watch →</div>
+              </a>
+              <a href="https://www.complex.com/pop-culture/a/tracewilliamcowen/faze-clan-doordash-subs-menu" target="_blank" class="case-card">
+                <div class="case-card-type">Partnership</div>
+                <div class="case-card-title">FaZe Subs</div>
+                <div class="case-card-desc">Co-launched FaZe Subs — a gaming ghost kitchen — across 98 US locations in partnership with FaZe Clan and FaZe Rugg. Developed a custom menu built for gamers, generating 10,000+ orders in the first month.</div>
+                <img src="images/dd_faze_subs.jpeg" alt="FaZe Subs" style="width:100%;border-radius:6px;margin-top:0.75rem;">
+                <div class="case-card-arrow">Read more →</div>
+              </a>
+              <a href="#" class="case-card" style="cursor:default;" onclick="return false;">
+                <div class="case-card-type">Loyalty & Acquisition</div>
+                <div class="case-card-title">Fan Activations</div>
+                <div class="case-card-desc">Led planning and execution of multiple live activations built to convert existing partnership audiences into subscribers. The Blue Jays Locker Room activation drove DashPass acquisitions up 108%, while two FaZe Clan fan events delivered +24% subscription growth.</div>
+                <img src="images/dd_image_2.png" alt="DoorDash Locker Room" style="width:100%;border-radius:6px;margin-top:0.75rem;">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PlayStation -->
+      <div class="exp-item" id="job-ps">
+        <button class="exp-trigger" onclick="toggleExp('job-ps')">
+          <div class="exp-index">04</div>
+          <div class="exp-logo-wrap">
+            <img src="images/playstation.png" alt="PlayStation" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+            <span class="logo-fallback" style="display:none">PS</span>
+          </div>
+          <div class="exp-header-info">
+            <div class="exp-company">PlayStation Canada</div>
+            <div class="exp-meta"><span class="exp-role-tag">Manager, Brand & Sport Marketing · Toronto, ON</span></div>
+          </div>
+          <div class="exp-right">
+            <div class="exp-tags"><span class="exp-tag-pill">Sport</span><span class="exp-tag-pill">Brand</span></div>
+            <div class="exp-arrow"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+        </button>
+        <div class="exp-body">
+          <p class="exp-scope">Placeholder — describe the scope of your PlayStation Canada role.</p>
+          <div class="case-studies">
+            <div class="case-studies-title">Case studies & work samples</div>
+            <div class="case-cards">
+              <a href="https://www.youtube.com/watch?app=desktop&v=j8wIGsad0oE&feature=youtu.be" target="_blank" class="case-card">
+                <div class="case-card-type">Campaign</div>
+                <div class="case-card-title">OG Anunoby — Play Has No Limits</div>
+                <div class="case-card-desc">Led end-to-end production of a PS5 brand campaign with OG Anunoby and the Toronto Raptors — from ideation and storyboarding through to shoot and post-production. Coordinated custom in-game footage with 2K Sports, securing approvals from the NBA and NBAPA.</div>
+                <div class="case-card-arrow">Watch →</div>
+              </a>
+              <a href="https://www.youtube.com/watch?v=V8dHGXGa-I0" target="_blank" class="case-card">
+                <div class="case-card-type">Campaign</div>
+                <div class="case-card-title">Freddie Andersen — Play Has No Limits</div>
+                <div class="case-card-desc">Led end-to-end production of a PS5 brand campaign with Freddie Andersen and the Toronto Maple Leafs — from ideation and storyboarding through to shoot and post-production. Coordinated custom in-game footage with EA Sports, securing approvals from the NHL and NHLPA.</div>
+                <div class="case-card-arrow">Watch →</div>
+              </a>
+              <a href="https://x.com/peacecollectiv3/status/1336703466111111176?s=20" target="_blank" class="case-card">
+                <div class="case-card-type">Collaboration</div>
+                <div class="case-card-title">Peace Collective x PlayStation</div>
+                <div class="case-card-desc">Created PlayStation Canada's first apparel collaboration, partnering with Peace Collective around the cultural moment of the PS5 launch. Led product design and social launch strategy — the full collection sold out within 72 hours, including a dad cap in 12 hours and crewneck in 24.</div>
+                <img src="images/peace_collective.png" alt="Peace Collective x PlayStation" style="width:100%;border-radius:6px;margin-top:0.75rem;">
+                <div class="case-card-arrow">View →</div>
+              </a>
+              <a href="https://www.instagram.com/p/CHGJVaQHiDX/?utm_source=ig_web_copy_link" target="_blank" class="case-card">
+                <div class="case-card-type">Partnership</div>
+                <div class="case-card-title">Burger King x PS5</div>
+                <div class="case-card-desc">Executed the Burger King x PS5 partnership in Canada — managing digital asset creation, legal compliance, brand reviews, and global alignment across markets.</div>
+                <div class="case-card-arrow">View →</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MVRK -->
+      <div class="exp-item" id="job-mvrk">
+        <button class="exp-trigger" onclick="toggleExp('job-mvrk')">
+          <div class="exp-index">05</div>
+          <div class="exp-logo-wrap" style="background:var(--ink);">
+            <span class="logo-fallback" style="color:#3b82f6;font-size:0.7rem;letter-spacing:0.05em;">MVR<span style="color:#60a5fa">K</span></span>
+          </div>
+          <div class="exp-header-info">
+            <div class="exp-company">MVRK Sport & Entertainment</div>
+            <div class="exp-meta"><span class="exp-role-tag">Founder & Principal · Toronto, ON</span></div>
+          </div>
+          <div class="exp-right">
+            <div class="exp-tags"><span class="exp-tag-pill">Consulting</span><span class="exp-tag-pill">Founder</span></div>
+            <div class="exp-arrow"><svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 3v10M3 8l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          </div>
+        </button>
+        <div class="exp-body">
+          <p class="exp-scope">Founded MVRK Sport & Entertainment to bring senior-level marketing strategy and hands-on execution directly to brands operating at the intersection of sport, entertainment, and culture. No layers, no handoffs — just direct access to a decade of experience at scale.</p>
+          <div class="case-studies">
+            <div class="case-studies-title">MVRK projects</div>
+            <div class="case-cards">
+              <a href="mvrk-blue.html" class="case-card">
+                <div class="case-card-type">Consulting Site</div>
+                <div class="case-card-title">MVRK Sport & Entertainment</div>
+                <div class="case-card-desc">Capabilities, projects, and contact for the MVRK consultancy.</div>
+                <div class="case-card-arrow">Visit →</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PHOTO STRIP 2: Carousel -->
+<div class="photo-strip" style="padding: 0; overflow: hidden; position: relative;">
+  <div id="carousel" style="display: flex; transition: transform 0.5s ease; will-change: transform;">
+    <div style="min-width: 33.333%; padding: 1.25rem 0.6rem;"><div style="height:260px;background:var(--bg-warm);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--ink-light);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;">Photo 4</div></div>
+    <div style="min-width: 33.333%; padding: 1.25rem 0.6rem;"><div style="height:260px;background:var(--bg-warm);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--ink-light);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;">Photo 5</div></div>
+    <div style="min-width: 33.333%; padding: 1.25rem 0.6rem;"><div style="height:260px;background:var(--bg-warm);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--ink-light);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;">Photo 6</div></div>
+    <div style="min-width: 33.333%; padding: 1.25rem 0.6rem;"><div style="height:260px;background:var(--bg-warm);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--ink-light);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;">Photo 7</div></div>
+    <div style="min-width: 33.333%; padding: 1.25rem 0.6rem;"><div style="height:260px;background:var(--bg-warm);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--ink-light);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;">Photo 8</div></div>
+  </div>
+  <button onclick="moveCarousel(-1)" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid var(--border-strong);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:1rem;z-index:10;">‹</button>
+  <button onclick="moveCarousel(1)" style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid var(--border-strong);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:1rem;z-index:10;">›</button>
+</div>
+<script>
+(function() {
+  var current = 0;
+  var total = 5;
+  var visible = 3;
+  window.moveCarousel = function(dir) {
+    current = Math.max(0, Math.min(current + dir, total - visible));
+    document.getElementById('carousel').style.transform = 'translateX(-' + (current * 33.333) + '%)';
+  };
+})();
+</script>
+
+<!-- BEYOND THE OFFICE -->
+<section id="beyond">
+  <div class="beyond-grid">
+    <div>
+      <div class="section-eyebrow reveal">Beyond the Office</div>
+      <h2 class="section-title reveal">The person,<br>not just the <em>résumé.</em></h2>
+      <div class="beyond-blurb reveal">
+        <p>Placeholder — add a personal blurb here. What do you do outside of work? Passions, hobbies, causes you care about. This is where the human behind the career comes through and makes you memorable.</p>
+      </div>
+      <div class="beyond-articles-label reveal">Featured In</div>
+      <div class="article-list reveal">
+        <a href="#" class="article-item">
+          <div class="article-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+          </div>
+          <div class="article-info">
+            <div class="article-source">Publication Name</div>
+            <div class="article-title">Article title placeholder — add your real media feature or press mention here.</div>
+          </div>
+        </a>
+        <a href="#" class="article-item">
+          <div class="article-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+          </div>
+          <div class="article-info">
+            <div class="article-source">Publication Name</div>
+            <div class="article-title">Second article or mention — swap in the real title and link.</div>
+          </div>
+        </a>
+        <a href="#" class="article-item">
+          <div class="article-icon">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+          </div>
+          <div class="article-info">
+            <div class="article-source">Publication Name</div>
+            <div class="article-title">Third article, podcast appearance, or speaking engagement.</div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="beyond-photos-label">Life outside the office</div>
+      <div class="beyond-photos">
+        <div class="beyond-photo-slot">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>Photo</span>
+        </div>
+        <div class="beyond-photo-slot">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>Photo</span>
+        </div>
+        <div class="beyond-photo-slot">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M3 16l5-5 4 4 3-3 6 6"/></svg>
+          <span>Photo</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-eyebrow reveal">Let's Connect</div>
+    <h2 class="contact-title reveal">Open to the <em>right opportunity.</em></h2>
+    <a href="mailto:listi.dan@gmail.com" class="contact-cta reveal">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M2 4l6 4 6-4M2 4v8h12V4H2z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      listi.dan@gmail.com
+    </a>
+    <div class="contact-links reveal">
+      <a href="#" class="contact-link">LinkedIn</a>
+      <a href="mvrk-blue.html" class="contact-link">MVRK Studio</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 <em>Daniel Listi</em></span>
+  <span>Global Partnerships Leader · Toronto, ON</span>
+</footer>
+
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
+});
+document.getElementById('navToggle').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+});
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+function toggleExp(id) {
+  const item = document.getElementById(id);
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.exp-item.open').forEach(el => el.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+</script>
+</body>
+</html>
