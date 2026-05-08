@@ -316,21 +316,21 @@ footer span em { font-family: 'Playfair Display', serif; font-style: italic; col
 
 <!-- PHOTO STRIP 1: Between About and Experience -->
 <div class="photo-strip">
-  <div class="photo-strip-grid">
-    <div class="photo-slot reveal">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M3 16l5-5 4 4 3-3 6 6"/></svg>
-      <span class="photo-slot-label">Photo 1</span>
-      <span class="photo-slot-sub">At work / event</span>
+  <div class="photo-strip-grid" style="grid-template-columns: repeat(5, 1fr);">
+    <div class="photo-slot reveal" style="border:none;background:none;border-radius:8px;overflow:hidden;">
+      <img src="images/strip1_kh_pinterest.jpg" alt="Kraft Heinz x Pinterest" style="width:100%;height:220px;object-fit:cover;object-position:center;display:block;border-radius:8px;">
     </div>
-    <div class="photo-slot reveal">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M3 16l5-5 4 4 3-3 6 6"/></svg>
-      <span class="photo-slot-label">Photo 2</span>
-      <span class="photo-slot-sub">At work / event</span>
+    <div class="photo-slot reveal" style="border:none;background:none;border-radius:8px;overflow:hidden;">
+      <img src="images/strip1_jet_ucl.jpg" alt="Just Eat x UEFA Champions League" style="width:100%;height:220px;object-fit:cover;object-position:center;display:block;border-radius:8px;">
     </div>
-    <div class="photo-slot reveal">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M3 16l5-5 4 4 3-3 6 6"/></svg>
-      <span class="photo-slot-label">Photo 3</span>
-      <span class="photo-slot-sub">At work / event</span>
+    <div class="photo-slot reveal" style="border:none;background:none;border-radius:8px;overflow:hidden;">
+      <img src="images/strip1_ps_wfh.jpg" alt="PlayStation" style="width:100%;height:220px;object-fit:cover;object-position:center top;display:block;border-radius:8px;">
+    </div>
+    <div class="photo-slot reveal" style="border:none;background:none;border-radius:8px;overflow:hidden;">
+      <img src="images/strip1_dd_bluejays.jpg" alt="DoorDash x Blue Jays" style="width:100%;height:220px;object-fit:cover;object-position:center;display:block;border-radius:8px;">
+    </div>
+    <div class="photo-slot reveal" style="border:none;background:none;border-radius:8px;overflow:hidden;">
+      <img src="images/strip1_nba_trophy.jpg" alt="NBA Larry O'Brien Trophy" style="width:100%;height:220px;object-fit:cover;object-position:center top;display:block;border-radius:8px;">
     </div>
   </div>
 </div>
@@ -564,26 +564,29 @@ footer span em { font-family: 'Playfair Display', serif; font-style: italic; col
   </div>
 </section>
 
-<!-- PHOTO STRIP 2: Between Experience and Beyond -->
-<div class="photo-strip">
-  <div class="photo-strip-grid">
-    <div class="photo-slot reveal">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M3 16l5-5 4 4 3-3 6 6"/></svg>
-      <span class="photo-slot-label">Photo 4</span>
-      <span class="photo-slot-sub">At work / event</span>
-    </div>
-    <div class="photo-slot reveal">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M3 16l5-5 4 4 3-3 6 6"/></svg>
-      <span class="photo-slot-label">Photo 5</span>
-      <span class="photo-slot-sub">At work / event</span>
-    </div>
-    <div class="photo-slot reveal">
-      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M3 16l5-5 4 4 3-3 6 6"/></svg>
-      <span class="photo-slot-label">Photo 6</span>
-      <span class="photo-slot-sub">At work / event</span>
-    </div>
+<!-- PHOTO STRIP 2: Carousel -->
+<div class="photo-strip" style="padding: 0; overflow: hidden; position: relative;">
+  <div id="carousel" style="display: flex; transition: transform 0.5s ease; will-change: transform;">
+    <div style="min-width: 33.333%; padding: 1.25rem 0.6rem;"><div style="height:260px;background:var(--bg-warm);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--ink-light);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;">Photo 4</div></div>
+    <div style="min-width: 33.333%; padding: 1.25rem 0.6rem;"><div style="height:260px;background:var(--bg-warm);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--ink-light);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;">Photo 5</div></div>
+    <div style="min-width: 33.333%; padding: 1.25rem 0.6rem;"><div style="height:260px;background:var(--bg-warm);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--ink-light);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;">Photo 6</div></div>
+    <div style="min-width: 33.333%; padding: 1.25rem 0.6rem;"><div style="height:260px;background:var(--bg-warm);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--ink-light);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;">Photo 7</div></div>
+    <div style="min-width: 33.333%; padding: 1.25rem 0.6rem;"><div style="height:260px;background:var(--bg-warm);border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--ink-light);font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;">Photo 8</div></div>
   </div>
+  <button onclick="moveCarousel(-1)" style="position:absolute;left:1rem;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid var(--border-strong);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:1rem;z-index:10;">‹</button>
+  <button onclick="moveCarousel(1)" style="position:absolute;right:1rem;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:50%;border:1px solid var(--border-strong);background:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--ink);font-size:1rem;z-index:10;">›</button>
 </div>
+<script>
+(function() {
+  var current = 0;
+  var total = 5;
+  var visible = 3;
+  window.moveCarousel = function(dir) {
+    current = Math.max(0, Math.min(current + dir, total - visible));
+    document.getElementById('carousel').style.transform = 'translateX(-' + (current * 33.333) + '%)';
+  };
+})();
+</script>
 
 <!-- BEYOND THE OFFICE -->
 <section id="beyond">
